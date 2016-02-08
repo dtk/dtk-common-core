@@ -1,4 +1,4 @@
-dtk-common-repo
+dtk-common-core
 ===============
 
 What it is?
