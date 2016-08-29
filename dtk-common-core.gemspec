@@ -15,5 +15,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = DtkCommonCore::VERSION
 
-  gem.add_dependency 'rest-client'
+  gem.add_dependency 'rest-client', '1.6.7'
 end
