@@ -16,5 +16,5 @@
 # limitations under the License.
 #
 module DtkCommonCore
-  VERSION="0.10.0"
+  VERSION="v0.10.0"
 end
