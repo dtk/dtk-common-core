@@ -15,9 +15,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-require File.expand_path('auxiliary', File.dirname(__FILE__))
-require File.expand_path('errors', File.dirname(__FILE__))
-require File.expand_path('hash_object', File.dirname(__FILE__))
-require File.expand_path('log', File.dirname(__FILE__))
-require File.expand_path('response', File.dirname(__FILE__))
-require File.expand_path('pretty_print_form', File.dirname(__FILE__))
+module DTK
+  module Common
+    module PrettyPrintForm
+      # opts can have terms:
+      #   :namespace
+      #   :version
+      def self.module_ref(module_name, opts = {})
+        ret = opts[:namespace] ? "#{opts[:namespace]}/#{module_name}" : module_name
+        ret << "(#{opts[:version]})" if opts[:version]
+        ret
+      end
+    end
+  end
+end
