@@ -217,7 +217,8 @@ module DTK
               block.call
             rescue  ::RestClient::ResourceNotFound, RestClient::Request::Unauthorized, RestClient::BadRequest,::RestClient::InternalServerError => e
               # with latest set of changes we will consider this as special case since most of legacy code is expecting Response class
-              errors = (safe_json_parse(e.response)||{})['errors']||errors_field('Server Error')
+              parsed_response = safe_json_parse(e.response) || {}
+              errors = parsed_response['errors'] || parsed_response['error'] || errors_field('Server Error')
               Response.new(StatusField => StatusNotok, ErrorsField => errors)
             rescue ::RestClient::Forbidden => e
               return error_response({ErrorsSubFieldCode => RestClientErrors[e.class.to_s]||GenericError, ErrorsOriginalException => e},opts) unless e.inspect.to_s.include?("PG::Error")
